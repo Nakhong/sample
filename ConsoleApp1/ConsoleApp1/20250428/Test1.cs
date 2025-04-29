@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp1._20250428
 {
-    class Program
+    public class Test1
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
