@@ -4,10 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1._20250428
+namespace ConsoleApp1
 {
-    public class Test1
+    public class Day1
     {
+        public Day1() {
+            Question1();
+            Question2();
+            Question3();
+            Question4();
+            Question5();
+            Question6();
+            Question7();
+            Question8();
+        }
+
         //문제 1 정수형 변수 a, 실수형 변수 b 두 변수를 선언하고 초기화한 뒤, 두 수의 합을 출력하시오.
         public void Question1() {
             int a = 1;
