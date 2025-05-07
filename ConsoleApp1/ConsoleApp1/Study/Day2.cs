@@ -10,8 +10,8 @@ namespace ConsoleApp1
     {
             public Day2()
             {
-                Question1();
-                Question2();
+                //Question1();
+                //Question2();
                 Question3();
                 Question4();
             }
@@ -117,6 +117,10 @@ namespace ConsoleApp1
                 {
                     for (int i = 1; i <= N; i++)
                     {
+                        for (int j = 1; j <= N; j++)
+                        {
+                            Console.Write(" ");
+                        }
                         for (int j = 1; j <= i; j++)
                         {
                             Console.Write("*");
@@ -126,6 +130,11 @@ namespace ConsoleApp1
                 }
                 else if (inputCommand == "3") //하(우)
                 {
+                    for (int i= N; i<= N + 1; i++)
+                    {
+                        Console.Write("\n");
+                    }
+
                     for (int i = N; i >= 1; i--)
                     {
                         for (int j = 1; j <= N - i; j++)
@@ -141,8 +150,17 @@ namespace ConsoleApp1
                 }
                 else if (inputCommand == "4") //하(좌)
                 {
+                    for (int i = N; i <= N + 1; i++)
+                    {
+                        Console.Write("\n");
+                    }
+
                     for (int i = N; i >= 1; i--)
                     {
+                        for (int j = 1; j <= N; j++)
+                        {
+                            Console.Write(" ");
+                        }
                         for (int j = 1; j <= i; j++)
                         {
                             Console.Write("*");
@@ -159,9 +177,9 @@ namespace ConsoleApp1
                     }
                     int middle = N / 2;
 
-                    for (int i = 0; i <= middle; i++)
+                    for (int i = 0; i <= N; i++)
                     {
-                        for (int j = 1; j <= middle - i; j++)
+                        for (int j = 1; j <= N - i; j++)
                         {
                             Console.Write(" ");
                         }
@@ -174,9 +192,9 @@ namespace ConsoleApp1
                         Console.Write("\n");
                     }
 
-                    for (int i = middle - 1; i >= 0; i--)
+                    for (int i = N - 1; i >= 0; i--)
                     {
-                        for (int j = 1; j <= middle - i; j++)
+                        for (int j = 1; j <= N - i; j++)
                         {
                             Console.Write(" ");
                         }
