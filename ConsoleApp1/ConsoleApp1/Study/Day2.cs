@@ -8,31 +8,33 @@ namespace ConsoleApp1
 {
     public class Day2
     {
-            public Day2()
-            {
-                //Question1();
-                //Question2();
-                Question3();
-                Question4();
-            }
+        public Day2()
+        {
+            //Question1();
+            //Question2();
+            Question3();
+            Question4();
+        }
 
-            //문제 1 사용자로부터 양의 정수 N을 입력받아, 2부터 N까지의 모든 소수를 배열에 저장한 뒤 출력하세요. 어떤 소수도 N의 제곱근보다 큰 수로 나눠지지 않는다는 규칙이 있다.
-            public void Question1()
-            {   
+        //문제 1 사용자로부터 양의 정수 N을 입력받아, 2부터 N까지의 모든 소수를 배열에 저장한 뒤 출력하세요. 어떤 소수도 N의 제곱근보다 큰 수로 나눠지지 않는다는 규칙이 있다.
+        public void Question1()
+        {
             //입력 -> while로 양의 정수 확인 -> for문으로 소수 확인 -> 결과
             List<int> arrNum = new List<int>();
             int N;
 
             // 양의 정수 N > 1 확인
-            while(true){
+            while (true)
+            {
                 Console.Write("양의 정수 입력 : ");
                 string input = Console.ReadLine();
 
-                if (int.TryParse(input, out N) && N > 1) 
+                if (int.TryParse(input, out N) && N > 1)
                 {
                     break;
                 }
-                else {
+                else
+                {
                     Console.WriteLine("잘못된 입력입니다. 양의 정수만 입력 해주세요. N > 1");
                 }
             }
@@ -65,7 +67,7 @@ namespace ConsoleApp1
             Console.Write(",로 구분 된 무작위 정수 입력 : ");
             string input = Console.ReadLine();
 
-            int[] numberArr = input.Split(',').Select(int.Parse).ToArray();      
+            int[] numberArr = input.Split(',').Select(int.Parse).ToArray();
 
             int temp;
 
@@ -88,123 +90,129 @@ namespace ConsoleApp1
         public void Question3()
         {
             Console.Write("줄을 입력하세요: ");
-            int N;
+            int line;
 
             string inputLine = Console.ReadLine();
             string inputCommand;
 
-            if (int.TryParse(inputLine, out N) && N > 0)
+            if (int.TryParse(inputLine, out line) && line > 0)
             {
-                Console.Write("1.상(우), 2.상(좌), 3.하(우), 4.하(좌) : ");
-                inputCommand = Console.ReadLine();
-
-                if(inputCommand == "1") //상(우)
+                while (true)
                 {
-                    for (int i = 1; i <= N; i++)
-                    {
-                        for (int j = 1; j <= N - i; j++)
-                        {
-                            Console.Write(" ");
-                        }
-                        for (int k = 1; k <= i; k++)
-                        {
-                            Console.Write("*");
-                        }
-                        Console.Write("\n");
-                    }
-                }
-                else if (inputCommand == "2") //상(좌)
-                {
-                    for (int i = 1; i <= N; i++)
-                    {
-                        for (int j = 1; j <= N; j++)
-                        {
-                            Console.Write(" ");
-                        }
-                        for (int j = 1; j <= i; j++)
-                        {
-                            Console.Write("*");
-                        }
-                        Console.Write("\n");
-                    }
-                }
-                else if (inputCommand == "3") //하(우)
-                {
-                    for (int i= N; i<= N + 1; i++)
-                    {
-                        Console.Write("\n");
-                    }
+                    Console.Write("1.상(우), 2.상(좌), 3.하(우), 4.하(좌) 5.전체 (-1. 멈추기):");
+                    inputCommand = Console.ReadLine();
 
-                    for (int i = N; i >= 1; i--)
+                    if (inputCommand == "1") //상(우)
                     {
-                        for (int j = 1; j <= N - i; j++)
+                        for (int i = 1; i <= line; i++)
                         {
-                            Console.Write(" ");
+                            for (int j = 1; j <= line - i; j++)
+                            {
+                                Console.Write(" ");
+                            }
+                            for (int j = 1; j <= i; j++)
+                            {
+                                Console.Write("*");
+                            }
+                            Console.Write("\n");
                         }
-                        for (int k = 1; k <= i; k++)
+                    }
+                    else if (inputCommand == "2") //상(좌)
+                    {
+                        for (int i = 1; i <= line; i++)
                         {
-                            Console.Write("*");
+                            for (int j = 1; j <= line; j++)
+                            {
+                                Console.Write(" ");
+                            }
+                            for (int j = 1; j <= i; j++)
+                            {
+                                Console.Write("*");
+                            }
+                            Console.Write("\n");
                         }
-                        Console.Write("\n");
                     }
-                }
-                else if (inputCommand == "4") //하(좌)
-                {
-                    for (int i = N; i <= N + 1; i++)
+                    else if (inputCommand == "3") //하(우)
                     {
-                        Console.Write("\n");
-                    }
-
-                    for (int i = N; i >= 1; i--)
-                    {
-                        for (int j = 1; j <= N; j++)
+                        for (int i = line; i <= line + 1; i++)
                         {
-                            Console.Write(" ");
-                        }
-                        for (int j = 1; j <= i; j++)
-                        {
-                            Console.Write("*");
-                        }
-                        Console.Write("\n");
-                    }
-                }
-                else if (inputCommand == "5") //전체 --마름모
-                {
-                    if (N % 2 == 0)
-                    {
-                        Console.WriteLine($"입력한 {N}은 짝수입니다. 입력한 {N}에 +1을 더 합니다.");
-                        N += 1;
-                    }
-                    int middle = N / 2;
-
-                    for (int i = 0; i <= N; i++)
-                    {
-                        for (int j = 1; j <= N - i; j++)
-                        {
-                            Console.Write(" ");
+                            Console.Write("\n");
                         }
 
-                        for (int j = 1; j <= 2 * i + 1; j++)
+                        for (int i = line; i >= 1; i--)
                         {
-                            Console.Write("*");
+                            for (int j = 1; j <= line - i; j++)
+                            {
+                                Console.Write(" ");
+                            }
+                            for (int k = 1; k <= i; k++)
+                            {
+                                Console.Write("*");
+                            }
+                            Console.Write("\n");
                         }
-
-                        Console.Write("\n");
                     }
-
-                    for (int i = N - 1; i >= 0; i--)
+                    else if (inputCommand == "4") //하(좌)
                     {
-                        for (int j = 1; j <= N - i; j++)
+                        for (int i = line; i <= line + 1; i++)
                         {
-                            Console.Write(" ");
+                            Console.Write("\n");
                         }
 
-                        for (int j = 1; j <= 2 * i + 1; j++)
+                        for (int i = line; i >= 1; i--)
                         {
-                            Console.Write("*");
+                            for (int j = 1; j <= line; j++)
+                            {
+                                Console.Write(" ");
+                            }
+                            for (int j = 1; j <= i; j++)
+                            {
+                                Console.Write("*");
+                            }
+                            Console.Write("\n");
+                        }
+                    }
+                    else if (inputCommand == "5") //전체
+                    {
+                        if (line % 2 == 0)
+                        {
+                            Console.WriteLine($"입력한 {line}은 짝수입니다. 입력한 {line}에 +1을 더 합니다.");
+                            line += 1;
                         }
 
-                        Console.Write("\n");
+                        int middle = line / 2;
+
+                        // 상단 (윗부분)
+                        for (int i = 0; i <= middle; i++)
+                        {
+                            for (int j = 0; j < middle - i; j++)
+                            {
+                                Console.Write(" ");
+                            }
+                            for (int j = 0; j < 2 * i + 1; j++)
+                            {
+                                Console.Write("*");
+                            }
+                            Console.WriteLine();
+                        }
+
+                        // 하단 (아랫부분)
+                        for (int i = middle - 1; i >= 0; i--)
+                        {
+                            for (int j = 0; j < middle - i; j++)
+                            {
+                                Console.Write(" ");
+                            }
+                            for (int j = 0; j < 2 * i + 1; j++)
+                            {
+                                Console.Write("*");
+                            }
+                            Console.WriteLine();
+                        }
+                    }
+                    else if (inputCommand == "-1")
+                    {
+                        break;
                     }
                 }
             }
@@ -212,12 +220,10 @@ namespace ConsoleApp1
             {
                 Console.WriteLine("유효한 정수를 입력하세요.");
             }
-
         }
         //문제 4 무작위 스트링 받아서 계산 값 출력하기 사칙연산, 소,중,대괄호 사용
         public void Question4()
         {
-
 
 
         }
@@ -231,11 +237,12 @@ namespace ConsoleApp1
                 get { return name; }
                 set
                 {
-                    if (value =="홍화낙" && value !=null)
+                    if (value == "홍화낙" && value != null)
                     {
                         name = value;
                     }
-                    else {
+                    else
+                    {
                         name = "";
                     }
                 }
