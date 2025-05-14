@@ -55,10 +55,73 @@ namespace ConsoleApp1
             return ExpressionResult(expression);
         }
 
-        // 사칙연산 단순 계산기 (왼쪽부터 순차 계산)
+        // 사칙연산 처리 함수 (우선순위 적용)
         private double ExpressionResult(string expr)
         {
-            return 1.23;
+            List<string> tokens = new List<string>();
+            StringBuilder number = new StringBuilder();
+
+            // 숫자와 연산자를 토큰으로 분리
+            for (int i = 0; i < expr.Length; i++)
+            {
+                char ch = expr[i];
+
+                if (char.IsDigit(ch) || ch == '.')
+                {
+                    number.Append(ch);
+                }
+                else if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
+                {
+                    if (number.Length > 0)
+                    {
+                        tokens.Add(number.ToString());
+                        number.Clear();
+                    }
+                    tokens.Add(ch.ToString());
+                }
+            }
+
+            if (number.Length > 0)
+            {
+                tokens.Add(number.ToString());
+            }
+
+            // 1단계: 곱셈, 나눗셈 먼저 처리
+            for (int i = 0; i < tokens.Count; i++)
+            {
+                if (tokens[i] == "*" || tokens[i] == "/")
+                {
+                    double left = double.Parse(tokens[i - 1]);
+                    double right = double.Parse(tokens[i + 1]);
+                    double result = tokens[i] == "*" ? left * right : left / right;
+
+                    // 계산된 결과를 tokens에 다시 넣음
+                    tokens[i - 1] = result.ToString();
+                    tokens.RemoveAt(i);     // 연산자 제거
+                    tokens.RemoveAt(i);     // 오른쪽 피연산자 제거
+                    i -= 1; // i 위치 재조정
+                }
+            }
+
+            // 2단계: 덧셈, 뺄셈 처리
+            double finalResult = double.Parse(tokens[0]);
+
+            for (int i = 1; i < tokens.Count; i += 2)
+            {
+                string op = tokens[i];
+                double next = double.Parse(tokens[i + 1]);
+
+                if (op == "+")
+                {
+                    finalResult += next;
+                }
+                else if (op == "-")
+                {
+                    finalResult -= next;
+                }
+            }
+
+            return finalResult;
         }
 
         //올바른 식인지 확인하기.
