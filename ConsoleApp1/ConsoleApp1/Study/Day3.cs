@@ -56,15 +56,15 @@ namespace ConsoleApp1
         }
 
         // 사칙연산 처리 함수 (우선순위 적용)
-        private double ExpressionResult(string expr)
+        private double ExpressionResult(string expression)
         {
-            List<string> tokens = new List<string>();
+            List<string> splitExpression = new List<string>();
             StringBuilder number = new StringBuilder();
 
             // 숫자와 연산자를 토큰으로 분리
-            for (int i = 0; i < expr.Length; i++)
+            for (int i = 0; i < expression.Length; i++)
             {
-                char ch = expr[i];
+                char ch = expression[i];
 
                 if (char.IsDigit(ch) || ch == '.')
                 {
@@ -74,54 +74,54 @@ namespace ConsoleApp1
                 {
                     if (number.Length > 0)
                     {
-                        tokens.Add(number.ToString());
+                        splitExpression.Add(number.ToString());
                         number.Clear();
                     }
-                    tokens.Add(ch.ToString());
+                    splitExpression.Add(ch.ToString());
                 }
             }
 
             if (number.Length > 0)
             {
-                tokens.Add(number.ToString());
+                splitExpression.Add(number.ToString());
             }
 
             // 1단계: 곱셈, 나눗셈 먼저 처리
-            for (int i = 0; i < tokens.Count; i++)
+            for (int i = 0; i < splitExpression.Count; i++)
             {
-                if (tokens[i] == "*" || tokens[i] == "/")
+                if (splitExpression[i] == "*" || splitExpression[i] == "/")
                 {
-                    double left = double.Parse(tokens[i - 1]);
-                    double right = double.Parse(tokens[i + 1]);
-                    double result = tokens[i] == "*" ? left * right : left / right;
+                    double left = double.Parse(splitExpression[i - 1]);
+                    double right = double.Parse(splitExpression[i + 1]);
+                    double result = splitExpression[i] == "*" ? left * right : left / right;
 
-                    // 계산된 결과를 tokens에 다시 넣음
-                    tokens[i - 1] = result.ToString();
-                    tokens.RemoveAt(i);     // 연산자 제거
-                    tokens.RemoveAt(i);     // 오른쪽 피연산자 제거
+                    // 계산된 결과를 expression에 다시 넣음
+                    splitExpression[i - 1] = result.ToString();
+                    splitExpression.RemoveAt(i);     // 연산자 제거
+                    splitExpression.RemoveAt(i);     // 오른쪽 피연산자 제거
                     i -= 1; // i 위치 재조정
                 }
             }
 
             // 2단계: 덧셈, 뺄셈 처리
-            double finalResult = double.Parse(tokens[0]);
+            double resultNumber = double.Parse(splitExpression[0]);
 
-            for (int i = 1; i < tokens.Count; i += 2)
+            for (int i = 1; i < splitExpression.Count; i += 2)
             {
-                string op = tokens[i];
-                double next = double.Parse(tokens[i + 1]);
+                string op = splitExpression[i];
+                double next = double.Parse(splitExpression[i + 1]);
 
                 if (op == "+")
                 {
-                    finalResult += next;
+                    resultNumber += next;
                 }
                 else if (op == "-")
                 {
-                    finalResult -= next;
+                    resultNumber -= next;
                 }
             }
 
-            return finalResult;
+            return resultNumber;
         }
 
         //올바른 식인지 확인하기.
