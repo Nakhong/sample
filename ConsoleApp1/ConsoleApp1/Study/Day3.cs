@@ -9,7 +9,6 @@ namespace ConsoleApp1
     public class Day3
     {
         //문제 4 무작위 스트링 받아서 계산 값 출력하기 사칙연산, 소,중,대괄호 사용
-        //계산할때 식을 계속 들어가면서 -랑 + / *를 찾아서 맨 마지막에 먼저 할 순위의 연산자를 넣어놓고 뒤에서부터 빼면서 계산한다.
         public void Question1()
         {
             string Expression;
@@ -61,7 +60,7 @@ namespace ConsoleApp1
             List<string> splitExpression = new List<string>();
             StringBuilder number = new StringBuilder();
 
-            // 숫자와 연산자를 토큰으로 분리
+            // 숫자와 연산자 분리
             for (int i = 0; i < expression.Length; i++)
             {
                 char ch = expression[i];
