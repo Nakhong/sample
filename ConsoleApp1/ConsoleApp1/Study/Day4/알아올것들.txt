@@ -1,0 +1,51 @@
+﻿https://young-94.tistory.com/70 -for문
+1. for문 forEach의 다른점.
+       사용 / 수정 가능 / 성능
+for문 : 배열, 리스트 등(인덱스가 있는) /  인덱스로 값 수정 가능 / 차이 없음
+forEach문 : 배열, 리스트 컬렉션 전체 / 값 수정은 불가능 / 차이 없음
+
+for (int i = 0; i < list.Count; i++)
+{
+    Console.WriteLine(list[i]);
+}
+
+foreach (var item in list)
+{
+    Console.WriteLine(item);
+}
+
+https://husk321.tistory.com/357 -string
+2. String과 StringBuilder의 차이점. /불변성 /문자열 수정 시/성능 (반복 작업)/사용 용도
+string	: 불변(immutable)/매번 새로운 문자열 객체 생성 /느림 (매번 메모리 새로 할당)/간단한 문자열 조작	
+String클래스는 불변 객체이기 때문에 문자열 연산이 많은 프로그래밍이 필요할 때 계속해서 
+인스턴스를 생성하므로 성능이 떨어지지만 조회가 많은 환경, 멀티쓰레드 환경에서 성능적으로 유리합니다.
+
+StringBuilder클래스는 문자열 연산이 자주 발생할 때 문자열이 변경가능한 객체기 때문에 성능적으로 유리합니다.
+
+StringBuilder : 가변 (mutable)/기존 인스턴스에 이어 붙이기/빠름 (메모리 재사용)/반복되는 문자열 연결(루프 등)
+StringBuilder는 문자열의 저장 및 변경을 위한 메모리 공간을 지닌 클래스이다.
+
+string
+result += i; 매번 새로운 문자열을 생성함.
+Substring()으로 새로운 문자열을 생성함.
+
+string builder 매번 새로운 문자열을 생성하지 않고 기존 인스턴스에 이어 붙이기.
+sb.Append(i); 
+sb.Remove(6, 5);
+
+3. 컬렉션 : 여러 개의 데이터를 하나로 모아 관리할 수 있는 구조(자료구조). 컨테니어라고 보면 됨.
+
+1. 일반 컬렉션 .NET Framework 1.0 이상 박싱과 언박싱 과정에서 부하가 발생함 (메모리 낭비와 속도 저하)
+// object로 형변환 되는것을 박싱(Boxing) 이라고 함
+ArrayList, Hashtable, Stack, Queue : 어떤 타입이든 저장 가능(object로), 형 변환이 필요하다. 요즘 잘 안쓰고 제네릭 컬렉션을 사용함.
+
+2. 제네릭 컬렉션 .NET Framework 2.0이상 박싱과 언박싱이 발생하지 않음. 성능면에서 훨씬 좋음
+<Member2> 타입으로 생성했기 때문에 object로 박싱이 일어나지 않음
+
+List<T>, Dictionary(TKey,TValue), Queue<T>, Stack<T>, HashSet<T> : 타입 안전, 성능 좋고 오류 적음, 현재 C#에서 가장 많이 사용 함
+
+List<T>	: 배열처럼 순서 있음, 크기 자동 증가 ex)List<string> names
+Dictionary<K,V>	: 키-값 쌍으로 저장, 키로 빠르게 검색 가능	 ex)Dictionary<string, int>
+Queue<T> : 선입선출(FIFO) ex)Queue<string>
+Stack<T> : 후입선출(LIFO) ex)Stack<int>
+HashSet<T> : 중복 없는 집합 ex)HashSet<int>
