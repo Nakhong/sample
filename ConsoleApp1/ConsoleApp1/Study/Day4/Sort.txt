@@ -1,4 +1,4 @@
-﻿sort의 종류 sort의 대해서
+﻿sort의 종류 sort의 대해서 (https://velog.io/@kku64r/sort)
 
 1.선택 정렬
 1번째부터 끝까지 훑어서 가장 작은 게 1번째, 
