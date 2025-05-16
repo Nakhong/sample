@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Study\Day4\football_5countries_data.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Study\Day4\알아올것들.txt" />

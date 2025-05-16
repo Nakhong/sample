@@ -1,0 +1,587 @@
+[
+  {
+    "name": "대한민국",
+    "leagues": [
+      {
+        "name": "K리그1",
+        "teams": [
+          {
+            "name": "전북 현대",
+            "players": [
+              {
+                "name": "정우영",
+                "position": "골키퍼"
+              },
+              {
+                "name": "마르첼로",
+                "position": "골키퍼"
+              },
+              {
+                "name": "기성용",
+                "position": "골키퍼"
+              }
+            ]
+          },
+          {
+            "name": "울산 현대",
+            "players": [
+              {
+                "name": "모하메드 살라",
+                "position": "수비수"
+              },
+              {
+                "name": "조현우",
+                "position": "골키퍼"
+              },
+              {
+                "name": "이강인",
+                "position": "미드필더"
+              }
+            ]
+          },
+          {
+            "name": "FC 서울",
+            "players": [
+              {
+                "name": "루카 모드리치",
+                "position": "미드필더"
+              },
+              {
+                "name": "해리 케인",
+                "position": "공격수"
+              },
+              {
+                "name": "엘링 홀란",
+                "position": "미드필더"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "K리그2",
+        "teams": [
+          {
+            "name": "부산 아이파크",
+            "players": [
+              {
+                "name": "카림 벤제마",
+                "position": "공격수"
+              },
+              {
+                "name": "파울로 디발라",
+                "position": "미드필더"
+              },
+              {
+                "name": "차범근",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "안산 그리너스",
+            "players": [
+              {
+                "name": "세르히오 라모스",
+                "position": "골키퍼"
+              },
+              {
+                "name": "케빈 더 브라위너",
+                "position": "공격수"
+              },
+              {
+                "name": "리오넬 메시",
+                "position": "공격수"
+              }
+            ]
+          },
+          {
+            "name": "대전 하나 시티즌",
+            "players": [
+              {
+                "name": "토니 크로스",
+                "position": "공격수"
+              },
+              {
+                "name": "황의조",
+                "position": "수비수"
+              },
+              {
+                "name": "김민재",
+                "position": "골키퍼"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "잉글랜드",
+    "leagues": [
+      {
+        "name": "프리미어리그",
+        "teams": [
+          {
+            "name": "맨체스터 시티",
+            "players": [
+              {
+                "name": "홍명보",
+                "position": "미드필더"
+              },
+              {
+                "name": "로베르트 레반도프스키",
+                "position": "골키퍼"
+              },
+              {
+                "name": "다비드 비야",
+                "position": "미드필더"
+              }
+            ]
+          },
+          {
+            "name": "리버풀",
+            "players": [
+              {
+                "name": "킬리안 음바페",
+                "position": "수비수"
+              },
+              {
+                "name": "크리스티아누 호날두",
+                "position": "공격수"
+              },
+              {
+                "name": "네이마르",
+                "position": "골키퍼"
+              }
+            ]
+          },
+          {
+            "name": "첼시",
+            "players": [
+              {
+                "name": "제라르 피케",
+                "position": "수비수"
+              },
+              {
+                "name": "에당 아자르",
+                "position": "골키퍼"
+              },
+              {
+                "name": "박지성",
+                "position": "미드필더"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "챔피언십",
+        "teams": [
+          {
+            "name": "리즈 유나이티드",
+            "players": [
+              {
+                "name": "손흥민",
+                "position": "공격수"
+              },
+              {
+                "name": "버질 반 다이크",
+                "position": "골키퍼"
+              },
+              {
+                "name": "안드레스 이니에스타",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "선덜랜드",
+            "players": [
+              {
+                "name": "선수8813",
+                "position": "공격수"
+              },
+              {
+                "name": "선수9294",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수3460",
+                "position": "미드필더"
+              }
+            ]
+          },
+          {
+            "name": "왓포드",
+            "players": [
+              {
+                "name": "선수1545",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수3591",
+                "position": "수비수"
+              },
+              {
+                "name": "선수6785",
+                "position": "수비수"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "스페인",
+    "leagues": [
+      {
+        "name": "라리가",
+        "teams": [
+          {
+            "name": "레알 마드리드",
+            "players": [
+              {
+                "name": "선수9204",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수1379",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수8838",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "바르셀로나",
+            "players": [
+              {
+                "name": "선수1852",
+                "position": "수비수"
+              },
+              {
+                "name": "선수6550",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수7914",
+                "position": "미드필더"
+              }
+            ]
+          },
+          {
+            "name": "세비야",
+            "players": [
+              {
+                "name": "선수9159",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수2515",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수5949",
+                "position": "미드필더"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "세군다 디비시온",
+        "teams": [
+          {
+            "name": "레반테",
+            "players": [
+              {
+                "name": "선수5693",
+                "position": "공격수"
+              },
+              {
+                "name": "선수9505",
+                "position": "수비수"
+              },
+              {
+                "name": "선수1883",
+                "position": "공격수"
+              }
+            ]
+          },
+          {
+            "name": "히혼",
+            "players": [
+              {
+                "name": "선수7332",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수2454",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수3451",
+                "position": "골키퍼"
+              }
+            ]
+          },
+          {
+            "name": "사라고사",
+            "players": [
+              {
+                "name": "선수7359",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수2525",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수1023",
+                "position": "골키퍼"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "독일",
+    "leagues": [
+      {
+        "name": "분데스리가",
+        "teams": [
+          {
+            "name": "바이에른 뮌헨",
+            "players": [
+              {
+                "name": "선수7939",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수4404",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수8133",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "도르트문트",
+            "players": [
+              {
+                "name": "선수5074",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수4287",
+                "position": "공격수"
+              },
+              {
+                "name": "선수5217",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "레버쿠젠",
+            "players": [
+              {
+                "name": "선수2450",
+                "position": "공격수"
+              },
+              {
+                "name": "선수3297",
+                "position": "수비수"
+              },
+              {
+                "name": "선수4959",
+                "position": "골키퍼"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "2. 분데스리가",
+        "teams": [
+          {
+            "name": "함부르크",
+            "players": [
+              {
+                "name": "선수5887",
+                "position": "수비수"
+              },
+              {
+                "name": "선수1050",
+                "position": "수비수"
+              },
+              {
+                "name": "선수1688",
+                "position": "미드필더"
+              }
+            ]
+          },
+          {
+            "name": "쾰른",
+            "players": [
+              {
+                "name": "선수2147",
+                "position": "수비수"
+              },
+              {
+                "name": "선수4731",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수4814",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "뒤셀도르프",
+            "players": [
+              {
+                "name": "선수9173",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수2013",
+                "position": "수비수"
+              },
+              {
+                "name": "선수7370",
+                "position": "미드필더"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "프랑스",
+    "leagues": [
+      {
+        "name": "리그 1",
+        "teams": [
+          {
+            "name": "파리 생제르맹",
+            "players": [
+              {
+                "name": "선수8995",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수6959",
+                "position": "수비수"
+              },
+              {
+                "name": "선수2881",
+                "position": "골키퍼"
+              }
+            ]
+          },
+          {
+            "name": "마르세유",
+            "players": [
+              {
+                "name": "선수1215",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수7846",
+                "position": "공격수"
+              },
+              {
+                "name": "선수5611",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "리옹",
+            "players": [
+              {
+                "name": "선수6418",
+                "position": "수비수"
+              },
+              {
+                "name": "선수2227",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수9150",
+                "position": "공격수"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "리그 2",
+        "teams": [
+          {
+            "name": "오세르",
+            "players": [
+              {
+                "name": "선수6295",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수8527",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수6959",
+                "position": "골키퍼"
+              }
+            ]
+          },
+          {
+            "name": "소쇼",
+            "players": [
+              {
+                "name": "선수8107",
+                "position": "골키퍼"
+              },
+              {
+                "name": "선수1459",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수5263",
+                "position": "수비수"
+              }
+            ]
+          },
+          {
+            "name": "루앙",
+            "players": [
+              {
+                "name": "선수5626",
+                "position": "미드필더"
+              },
+              {
+                "name": "선수8968",
+                "position": "공격수"
+              },
+              {
+                "name": "선수1897",
+                "position": "골키퍼"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
