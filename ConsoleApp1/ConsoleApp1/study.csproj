@@ -51,6 +51,7 @@
     <Compile Include="Study\Day4\Contry.cs" />
     <Compile Include="Study\Day4\Player.cs" />
     <Compile Include="Study\Day4\League.cs" />
+    <Compile Include="Study\Day4\Team.cs" />
     <Compile Include="Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Study.Day4
 {
-    public class League
+    class Team
     {
         private String name;
-        private List<Team> players = new List<Team>();
+        private List<Player> players = new List<Player>();
 
         public String getName()
         {
