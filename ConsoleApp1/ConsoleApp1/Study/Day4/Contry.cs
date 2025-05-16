@@ -11,22 +11,22 @@ namespace ConsoleApp1.Study.Day4
         private String name;
         private List<League> leagues = new List<League>();
 
-        public String getName()
+        public String GetName()
         {
             return name;
         }
 
-        public void setName(String name)
+        public void SetName(String name)
         {
             this.name = name;
         }
 
-        public List<League> getLeagues()
+        public List<League> GetLeagues()
         {
             return leagues;
         }
 
-        public void setLeagues(List<League> leagues)
+        public void SetLeagues(List<League> leagues)
         {
             this.leagues = leagues;
         }

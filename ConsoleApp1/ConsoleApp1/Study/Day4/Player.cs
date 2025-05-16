@@ -11,22 +11,22 @@ namespace ConsoleApp1.Study.Day4
         private String name;
         private String position;
 
-        public String getName()
+        public String GetName()
         {
             return name;
         }
 
-        public void setName(String name)
+        public void SetName(String name)
         {
             this.name = name;
         }
 
-        public String getPosition()
+        public String GetPosition()
         {
             return position;
         }
 
-        public void setPosition(String position)
+        public void SetPosition(String position)
         {
             this.position = position;
         }

@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Study.Day4
 {
-    class Team
+    public class Team
     {
         private String name;
         private List<Player> players = new List<Player>();
 
-        public String getName()
+        public String GetName()
         {
             return name;
         }
 
-        public void setName(String name)
+        public void SetName(String name)
         {
             this.name = name;
         }
 
-        public List<Player> getPlayers()
+        public List<Player> GetPlayers()
         {
             return players;
         }
 
-        public void setPlayers(List<Player> players)
+        public void SetPlayers(List<Player> players)
         {
             this.players = players;
         }

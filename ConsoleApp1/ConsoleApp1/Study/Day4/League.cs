@@ -9,26 +9,26 @@ namespace ConsoleApp1.Study.Day4
     public class League
     {
         private String name;
-        private List<Team> players = new List<Team>();
+        private List<Team> team = new List<Team>();
 
-        public String getName()
+        public String GetName()
         {
             return name;
         }
 
-        public void setName(String name)
+        public void SetName(String name)
         {
             this.name = name;
         }
 
-        public List<Player> getPlayers()
+        public List<Team> GetTeam()
         {
-            return players;
+            return team;
         }
 
-        public void setPlayers(List<Player> players)
+        public void SetTeam(List<Team> team)
         {
-            this.players = players;
+            this.team = team;
         }
     }
 }
