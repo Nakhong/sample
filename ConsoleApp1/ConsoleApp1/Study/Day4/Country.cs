@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Study.Day4
 {
-    public class Contry
+    public class Country
     {
         private String name;
         private List<League> leagues = new List<League>();
