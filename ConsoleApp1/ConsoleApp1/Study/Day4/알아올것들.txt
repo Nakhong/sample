@@ -50,6 +50,7 @@ Queue<T> : 선입선출(FIFO) ex)Queue<string>
 Stack<T> : 후입선출(LIFO) ex)Stack<int>
 HashSet<T> : 중복 없는 집합 ex)HashSet<int>
 
+출처: https://developer-talk.tistory.com/345 [DevStory:티스토리]
 interface란 -- 조립 설명서, 행동 정의만 있다. 타입과 메소드 정의 가능
 
 --인터페이스를 사용하는 일반적인 이유
@@ -64,6 +65,3 @@ IEnumerable 인터페이스란?
 IEnumerable과 IEnumerator의 역할을 간단히 이야기해보자면 collection을 순회하기 위한 인터페이스라고 이해할 수 있다.
 IEnumerable은 List, Stack, Queue와 같은 컬렉션에 반복이 필요한 경우 사용되는 인터페이스입니다. 
 기본적으로 컬렉션은 이미 IEnumerable 인터페이스를 가지기 때문에 foreach문을 사용하여 컬렉션 요소들을 반복적으로 접근할 수 있습니다.
-
-출처: https://developer-talk.tistory.com/345 [DevStory:티스토리]
-
