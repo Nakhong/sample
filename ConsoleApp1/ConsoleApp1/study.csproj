@@ -49,6 +49,7 @@
     <Compile Include="Study\Day2.cs" />
     <Compile Include="Study\Day3.cs" />
     <Compile Include="Study\Day4\Country.cs" />
+    <Compile Include="Study\Day4\ITreeNode.cs" />
     <Compile Include="Study\Day4\Player.cs" />
     <Compile Include="Study\Day4\League.cs" />
     <Compile Include="Study\Day4\Team.cs" />

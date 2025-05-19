@@ -10,7 +10,6 @@ namespace ConsoleApp1.Study.Day4
     {
         private String name;
         private String position;
-        private Team team;
 
         public String GetName()
         {
@@ -32,14 +31,5 @@ namespace ConsoleApp1.Study.Day4
             this.position = position;
         }
 
-        public Team getTeam()
-        {
-            return team;
-        }
-
-        public void setTeam(Team team)
-        {
-            this.team = team;
-        }
     }
 }

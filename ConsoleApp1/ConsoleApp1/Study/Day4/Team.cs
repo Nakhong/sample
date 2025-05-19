@@ -10,7 +10,6 @@ namespace ConsoleApp1.Study.Day4
     {
         private String name;
         private List<Player> players = new List<Player>();
-        private League league;
 
         public String GetName()
         {
@@ -30,16 +29,6 @@ namespace ConsoleApp1.Study.Day4
         public void SetPlayers(List<Player> players)
         {
             this.players = players;
-        }
-
-        public League getLeague()
-        {
-            return league;
-        }
-
-        public void setLeague(League league)
-        {
-            this.league = league;
         }
     }
 }
