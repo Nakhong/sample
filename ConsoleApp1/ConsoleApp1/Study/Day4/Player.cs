@@ -30,5 +30,6 @@ namespace ConsoleApp1.Study.Day4
         {
             this.position = position;
         }
+
     }
 }
