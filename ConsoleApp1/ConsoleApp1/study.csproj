@@ -52,6 +52,7 @@
     <Compile Include="Study\Day4\Player.cs" />
     <Compile Include="Study\Day4\League.cs" />
     <Compile Include="Study\Day4\Team.cs" />
+    <Compile Include="Study\Day5\Day5.cs" />
     <Compile Include="Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +62,7 @@
   <ItemGroup>
     <Content Include="Study\Day4\알아올것들.txt" />
     <Content Include="Study\Day4\Sort.txt" />
+    <Content Include="Study\Day5\알아볼것.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

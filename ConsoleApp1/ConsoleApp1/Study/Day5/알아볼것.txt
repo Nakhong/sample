@@ -1,0 +1,113 @@
+﻿오버라이딩
+자식 클래스에서 부모 클래스의 메서드를 재정의하여 사용하는 것을 오버라이딩(overriding)이라고 합니다.
+
+이때, 자식 클래스에서 오버라이딩할 메서드의 시그니처(signature)가 부모 클래스의 메서드와 일치해야 합니다.
+
+시그니처란 메서드의 이름, 매개변수의 개수와 타입, 반환값의 타입 등을 말합니다.
+
+오버로딩
+오버로딩은 같은 이름의 메서드를 여러 개 정의하는 것을 의미합니다. 이때 메서드의 매개변수 타입이나 개수가 달라야 합니다. 오버로딩은 주로 메서드의 다형성을 제공하기 위해 사용됩니다.
+
+상속
+상속은 코드의 재사용성과 유지보수성을 높여주는 가장 대표적인 개념 중 하나입니다.
+
+상속을 사용하면, 이미 정의된 클래스를 확장하여 새로운 클래스를 만들 수 있습니다.
+
+이 때, 새로운 클래스는 부모 클래스의 모든 필드, 메서드를 그대로 상속받아 사용할 수 있습니다.
+
+상속을 사용할 때, 부모 클래스의 필드와 메서드를 사용하면서 새로운 필드나 메서드를 추가할 수 있습니다.
+
+1. 공통된 속성과 동작은 상위 클래스에
+상속의 목적은 중복 제거와 공통 로직의 재사용입니다.
+
+// Java 예시
+public class Animal {
+    protected String name;
+    protected int age;
+
+    public void eat() {
+        System.out.println("This animal eats food.");
+    }
+}
+
+2. 상위 클래스는 일반화(Generalization), 하위 클래스는 구체화(Specialization)
+하위 클래스가 상위 클래스의 "is-a" 관계를 가져야 합니다.
+예를 들어, Dog는 Animal이다 → 적절한 상속.
+
+public class Dog extends Animal {
+    private String breed;
+
+    public void bark() {
+        System.out.println("Woof!");
+    }
+}
+
+ 3. 필드는 최소화하고 캡슐화하라 (Encapsulation)
+필드는 보통 private, 접근은 getter/setter로.
+
+가능하면 상위 클래스의 필드는 protected나 private로 하고 하위 클래스에 직접 노출하지 않기.
+
+4. Liskov Substitution Principle (리스코프 치환 원칙)
+상위 타입 객체를 사용하는 곳에 하위 타입 객체를 넣어도 문제 없어야 합니다.
+
+void feed(Animal animal) {
+    animal.eat();  // Dog, Cat 모두 먹을 수 있어야 함
+}
+
+5. Composition vs Inheritance (상속보다 합성을 고려하라)
+상속은 강한 결합을 만들 수 있습니다. 변경에 약해질 수 있음.
+
+상속보다는 인터페이스와 구성(Composition)을 고려해보세요.
+
+public interface Flyable {
+    void fly();
+}
+
+public class Bird extends Animal implements Flyable {
+    public void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+
+6. 추상 클래스(Abstract Class)와 인터페이스(Interface)의 적절한 활용
+추상 클래스: 공통된 구현과 필드를 갖는 클래스에 적합
+
+인터페이스: 여러 타입에 공통 기능을 부여할 때 유용
+
+https://velog.io/@haero_kim/SOLID-%EC%9B%90%EC%B9%99-%EC%96%B4%EB%A0%B5%EC%A7%80-%EC%95%8A%EB%8B%A4
+ 7. SOLID 원칙 의식하기
+S: 단일 책임 원칙 (한 클래스는 하나의 책임만)
+
+O: 개방-폐쇄 원칙 (변경엔 닫혀 있고, 확장엔 열려 있어야)
+
+L: 리스코프 치환 원칙
+
+I: 인터페이스 분리 원칙
+
+D: 의존 역전 원칙
+
+나쁜 예
+
+public class Vehicle {
+    public int wheelCount;
+    public void fly() {}  // 자동차인데 왜 fly?
+}
+
+좋은 예
+
+public abstract class Vehicle {
+    protected int wheelCount;
+    public abstract void move();
+}
+
+public class Car extends Vehicle {
+    public void move() {
+        System.out.println("Car drives on roads");
+    }
+}
+
+public class Airplane extends Vehicle {
+    public void move() {
+        System.out.println("Airplane flies in the air");
+    }
+}
