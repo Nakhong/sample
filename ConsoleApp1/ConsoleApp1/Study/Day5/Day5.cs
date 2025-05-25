@@ -24,12 +24,7 @@ namespace ConsoleApp1.Study.Day5
         }
     }
 
-    public interface IPrint
-    {
-        void PrintInfo();
-    }
-
-    public class Company : Common,IPrint
+    public class Company : Common
     {
         public string Address { get; set; }
         public string CompanyPhoneNumber { get; set; }
@@ -53,7 +48,7 @@ namespace ConsoleApp1.Study.Day5
         }
     }
 
-    public class Department : Common, IPrint
+    public class Department : Common
     {
         public List<Employee> Employees { get; set; }
         public Company Company { get; set; }
@@ -79,7 +74,7 @@ namespace ConsoleApp1.Study.Day5
         }
     }
 
-    public class Employee : Common, IPrint
+    public class Employee : Common
     {
         public string EmployeeId { get; set; }
         public string Contact { get; set; }

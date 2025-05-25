@@ -17,32 +17,19 @@
 
 상속을 사용할 때, 부모 클래스의 필드와 메서드를 사용하면서 새로운 필드나 메서드를 추가할 수 있습니다.
 
+추상 클래스(Abstract Class)와 인터페이스(Interface)의 적절한 활용
+#추상 클래스: 공통된 구현과 필드를 갖는 클래스에 적합
+
+#인터페이스: 여러 타입에 공통 기능을 부여할 때 유용
+
 1. 공통된 속성과 동작은 상위 클래스에
 상속의 목적은 중복 제거와 공통 로직의 재사용입니다.
-
-// Java 예시
-public class Animal {
-    protected String name;
-    protected int age;
-
-    public void eat() {
-        System.out.println("This animal eats food.");
-    }
-}
 
 2. 상위 클래스는 일반화(Generalization), 하위 클래스는 구체화(Specialization)
 하위 클래스가 상위 클래스의 "is-a" 관계를 가져야 합니다.
 예를 들어, Dog는 Animal이다 → 적절한 상속.
 
-public class Dog extends Animal {
-    private String breed;
-
-    public void bark() {
-        System.out.println("Woof!");
-    }
-}
-
- 3. 필드는 최소화하고 캡슐화하라 (Encapsulation)
+3. 필드는 최소화하고 캡슐화하라 (Encapsulation)
 필드는 보통 private, 접근은 getter/setter로.
 
 가능하면 상위 클래스의 필드는 protected나 private로 하고 하위 클래스에 직접 노출하지 않기.
@@ -57,24 +44,8 @@ void feed(Animal animal) {
 5. Composition vs Inheritance (상속보다 합성을 고려하라)
 상속은 강한 결합을 만들 수 있습니다. 변경에 약해질 수 있음.
 
-상속보다는 인터페이스와 구성(Composition)을 고려해보세요.
-
-public interface Flyable {
-    void fly();
-}
-
-public class Bird extends Animal implements Flyable {
-    public void fly() {
-        System.out.println("Bird is flying");
-    }
-}
-
-6. 추상 클래스(Abstract Class)와 인터페이스(Interface)의 적절한 활용
-#추상 클래스: 공통된 구현과 필드를 갖는 클래스에 적합
-
-#인터페이스: 여러 타입에 공통 기능을 부여할 때 유용
-
 https://velog.io/@haero_kim/SOLID-%EC%9B%90%EC%B9%99-%EC%96%B4%EB%A0%B5%EC%A7%80-%EC%95%8A%EB%8B%A4
+
 # 7. SOLID 원칙 의식하기
 S: 단일 책임 원칙 (한 클래스는 하나의 책임만)
 
