@@ -54,6 +54,11 @@
     <Compile Include="Study\Day4\League.cs" />
     <Compile Include="Study\Day4\Team.cs" />
     <Compile Include="Study\Day5\Day5.cs" />
+    <Compile Include="Study\Day6\Model\Common.cs" />
+    <Compile Include="Study\Day6\Model\Company.cs" />
+    <Compile Include="Study\Day6\Model\Department.cs" />
+    <Compile Include="Study\Day6\Model\Employee.cs" />
+    <Compile Include="Study\Day6\Service\CreateTree.cs" />
     <Compile Include="Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,5 +70,6 @@
     <Content Include="Study\Day4\Sort.txt" />
     <Content Include="Study\Day5\공부.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
