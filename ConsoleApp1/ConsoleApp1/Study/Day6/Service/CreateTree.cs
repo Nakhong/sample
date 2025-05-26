@@ -1,4 +1,5 @@
-﻿using ConsoleApp1.Study.Day5;
+﻿
+using ConsoleApp1.Study.Day6.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace ConsoleApp1.Study.Day6.Service
             Department department = new Department(parts[3], company);
             company.Departments.Add(department);
 
-            Employee employee = new Employee(parts[4], parts[5], parts[6], department, parts[7]);
+            Employee employee = new Employee(parts[4], parts[5], parts[6], parts[7],parts[8],parts[9],department);
             department.Employees.Add(employee);
 
             company.PrintInfo();

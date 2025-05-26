@@ -14,7 +14,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            CreateTree.test("이삭엔지니어링;경기도 군포시;0313610800;DS사업본부;홍화낙;ISE230602;01075519505;전임");
+            CreateTree.test("이삭엔지니어링;031-361-0800;군포;/DS사업본부;/조원석;48;남;본부장;010-6559-0383;wscho@isaac-eng.com;,이준석;54;남;사업부장;010-3598-7077;jslee@isaac-eng.com;,정주영;46;남;이사;010-9676-7536;jyjeong@isaac-eng.com;,강희철;45;남;수석;010-6362-1575;hckang@isaac-eng.com;,박재한;44;남;수석;010-7233-3262;jhpark@isaac-eng.com;,서현수;51;남;수석;010-6766-9156;hsseo@isaac-eng.com;,심하영;41;여;수석;010-4789-0701;hyshim@isaac-eng.com;,이상일;47;남;수석;010-9535-2310;silee@isaac-eng.com;,조상현;43;남;수석;010-9449-4553;shjo@isaac-eng.com;,홍마태;45;남;수석;010-8986-8869;mthong@isaac-eng.com;,박준혁;38;남;책임;010-3336-9790;jhyukpark@isaac-eng.com;,정지용;40;남;책임;010-5447-0214;jyjung@isaac-eng.com;,백소영;32;여;선임;010-3857-0480;syoungbaek@isaac-eng.com;,권구윤;32;남;전임;010-3827-8691;gykwon@isaac-eng.com;,김서진;35;여;전임;010-4963-7022;seojkim@isaac-eng.com;,김용정;26;남;전임;010-9272-6583;yjkim@isaac-eng.com;,문은정;33;여;전임;010-3029-5648;ejmoon@isaac-eng.com;,신수민;29;남;전임;010-7421-3336;smshin@isaac-eng.com;,이종원;31;남;전임;010-9934-1757;jwlee@isaac-eng.com;,채웅선;32;남;전임;010-5399-5913;uschae@isaac-eng.com;,홍화낙;31;남;전임;010-7551-9505;hnhong@isaac-eng.com");
             Console.ReadKey();
         }
     }
