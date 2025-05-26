@@ -13,6 +13,9 @@ public (공개) : 외부에서 언제든 접근 가능
 private (비공개) : 선언된 클래스 내부에서만 접근 가능
 protect (상속 관계만 공개) : 클래스 내부와 해당 클래스를 상속받은 파생 클래스 내부에서만 접근 가능
 
+#Enum
+"Enum"은 미리 정의된 상수들의 특별한 집합 영단어의 의미를 봐도 짐작할 수 있는게, enum(enumeration) 의 뜻을 열거라는 뜻이다. 즉 상수들을 열거한 것이 바로 enum이다.
+
 #오버라이딩
 자식 클래스에서 부모 클래스의 메서드를 재정의하여 사용하는 것을 오버라이딩(overriding)이라고 합니다.
 
@@ -23,7 +26,7 @@ protect (상속 관계만 공개) : 클래스 내부와 해당 클래스를 상�
 #오버로딩
 오버로딩은 같은 이름의 메서드를 여러 개 정의하는 것을 의미합니다. 이때 메서드의 매개변수 타입이나 개수가 달라야 합니다. 오버로딩은 주로 메서드의 다형성을 제공하기 위해 사용됩니다.
 
-#상속
+#상속 (C#은 :, JAVA는 extends)
 상속은 코드의 재사용성과 유지보수성을 높여주는 가장 대표적인 개념 중 하나입니다.
 
 상속을 사용하면, 이미 정의된 클래스를 확장하여 새로운 클래스를 만들 수 있습니다.
@@ -43,11 +46,11 @@ class에서 직접 생성하지 않고, 외부에서 생성된 객체를 주입 
 1. 공통된 속성과 동작은 상위 클래스에
 상속의 목적은 중복 제거와 공통 로직의 재사용입니다.
 
-2. 상위 클래스는 일반화(Generalization), 하위 클래스는 구체화(Specialization)
+2. 상위 클래스는 일반화, 하위 클래스는 구체화
 하위 클래스가 상위 클래스의 "is-a" 관계를 가져야 합니다.
 예를 들어, Dog는 Animal이다 → 적절한 상속.
 
-3. 필드는 최소화하고 캡슐화하라 (Encapsulation)
+3. 필드는 최소화하고 캡슐화하라
 필드는 보통 private, 접근은 getter/setter로.
 
 가능하면 상위 클래스의 필드는 protected나 private로 하고 하위 클래스에 직접 노출하지 않기.
@@ -66,15 +69,6 @@ https://velog.io/@haero_kim/SOLID-%EC%9B%90%EC%B9%99-%EC%96%B4%EB%A0%B5%EC%A7%80
 
 # 7. SOLID 원칙 의식하기
 S: 단일 책임 원칙 (한 클래스는 하나의 책임만)
-
-클래스는 단 한개의 책임을 가져야 함
-클래스를 변경하는 이유는 단 하나여야 함
-이를 지키지 않으면, 한 책임의 변경에 의해 다른 책임과 관련된 코드에 영향을 미칠 수 있음
-→ 이렇게 되면 유지보수가 매우 비효율적
- 책임이란, '기능' 정도로 생각하면 된다. 
- 만약 한 클래스가 수행할 수 있는 기능 (책임) 이 여러 개라면, 
- 클래스 내부의 함수끼리 강한 결합을 발생할 가능성이 높아진다. 
- 응집도는 높고 결합도는 낮은 프로그램을 설계하는 것이 비로소 객체지향 설계의 핵심인데, 이것이 위반되는 것이다.
 
 O: 개방-폐쇄 원칙 (변경엔 닫혀 있고, 확장엔 열려 있어야)
 
@@ -98,13 +92,13 @@ public abstract class Vehicle {
     public abstract void move();
 }
 
-public class Car extends Vehicle {
+public class Car : Vehicle {
     public void move() {
         System.out.println("Car drives on roads");
     }
 }
 
-public class Airplane extends Vehicle {
+public class Airplane : Vehicle {
     public void move() {
         System.out.println("Airplane flies in the air");
     }
