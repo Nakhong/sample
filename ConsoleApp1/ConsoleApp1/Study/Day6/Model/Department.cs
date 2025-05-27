@@ -26,7 +26,7 @@ namespace ConsoleApp1.Study.Day6.Model
             Console.WriteLine("직원 리스트:");
             foreach (var emp in Employees)
             {
-                Console.WriteLine($"  - {emp.Name} (이메일: {emp.Email})");
+                Console.WriteLine($"  - {emp.Name} (직책: {emp.EmployeePosition})");
             }
             Console.WriteLine();
         }

@@ -81,7 +81,7 @@ namespace ConsoleApp1.Study.Day5
         public string EmployeePosition { get; set; }
         public Department Department { get; set; }
 
-        public Employee(string name, string employeeId, string contact, Department department, string position)
+        public Employee(string name, string employeeId, string contact, string empPosition, string empContact, Department department, string position)
         {
             Name = name;
             EmployeeId = employeeId;
