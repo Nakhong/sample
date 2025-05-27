@@ -10,12 +10,12 @@ namespace ConsoleApp1.Study.Day6.Service
 {
     public class CreateTree
     {
-        public Dictionary<string, string> Data { get; set; }
+        Dictionary<string, Common> Datas = new Dictionary<string, Common>();
 
-        public static void test(string row)
+        public void test(string row)
         {
             string[] majorSections = row.Split('/');
-
+            
             string[] companyDatas = majorSections[0].Split(';');
             //필드에 들어갈 값이 3개
             if (companyDatas.Length < 3)
@@ -30,6 +30,10 @@ namespace ConsoleApp1.Study.Day6.Service
             Department department = new Department(departmentName, company);
             company.Departments.Add(department);
 
+            Datas.Add("a",company);
+            company.GetType();
+            department.GetType();
+
             string allEmployeesRaw = majorSections[2].TrimStart(',').TrimEnd(';');
 
             string[] employeeRecords = allEmployeesRaw.Split(',');
@@ -38,7 +42,7 @@ namespace ConsoleApp1.Study.Day6.Service
             {
                 string[] empFields = empRecord.Split(';');
 
-                if (empFields.Length == 7)
+                if (empFields.Length ==7 || empFields.Length == 6)
                 {
                     string empName = empFields[0];
                     string empAge = empFields[1];
@@ -47,7 +51,7 @@ namespace ConsoleApp1.Study.Day6.Service
                     string empContact = empFields[4];
                     string empEmail = empFields[5];
 
-                    Employee employee = new Employee(empName, empAge, empGender, empPosition, empContact, empEmail, department);
+                    Employee employee = new Employee(empName, empPosition, empContact, empEmail, department);
                     department.Employees.Add(employee);
                 }
                 else
