@@ -22,7 +22,7 @@ namespace ConsoleApp1.Study.Day6.Model
 
         public void PrintInfo()
         {
-            Console.WriteLine("회사 정보");
+            Console.WriteLine("＝＝＝회사 정보＝＝＝");
             Console.WriteLine($"회사명: {Name}");
             Console.WriteLine($"주소: {Address}");
             Console.WriteLine($"전화번호: {CompanyPhoneNumber}");

@@ -20,7 +20,7 @@ namespace ConsoleApp1.Study.Day6.Model
 
         public void PrintInfo()
         {
-            Console.WriteLine("부서 정보");
+            Console.WriteLine("＝＝＝부서 정보＝＝＝");
             Console.WriteLine($"부서명: {Name}");
             Console.WriteLine($"소속 회사: {Company.Name}");
             Console.WriteLine("직원 리스트:");
