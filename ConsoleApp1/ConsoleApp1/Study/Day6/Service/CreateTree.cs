@@ -12,28 +12,10 @@ namespace ConsoleApp1.Study.Day6.Service
     {
         public Dictionary<string, string> Data { get; set; }
 
-        //public static void test(string row)
-        //{
-        //    string[] parts = row.Split(';');
-
-        //    Company company = new Company(parts[0], parts[1], parts[2]);
-
-        //    Department department = new Department(parts[3], company);
-        //    company.Departments.Add(department);
-
-        //    Employee employee = new Employee(parts[4], parts[5], parts[6], department, parts[7]);
-        //    department.Employees.Add(employee);
-
-        //    company.PrintInfo();
-        //    department.PrintInfo();
-        //    employee.PrintInfo();
-
-        //}
-
         public static void test(string row)
         {
             string[] majorSections = row.Split('/');
-            
+
             string[] companyDatas = majorSections[0].Split(';');
             //필드에 들어갈 값이 3개
             if (companyDatas.Length < 3)
@@ -48,8 +30,31 @@ namespace ConsoleApp1.Study.Day6.Service
             Department department = new Department(departmentName, company);
             company.Departments.Add(department);
 
-            Employee employee = new Employee(parts[4], parts[5], parts[6], department, parts[7]);
-            department.Employees.Add(employee);
+            string allEmployeesRaw = majorSections[2].TrimStart(',').TrimEnd(';');
+
+            string[] employeeRecords = allEmployeesRaw.Split(',');
+
+            foreach (string empRecord in employeeRecords)
+            {
+                string[] empFields = empRecord.Split(';');
+
+                if (empFields.Length == 7)
+                {
+                    string empName = empFields[0];
+                    string empAge = empFields[1];
+                    string empGender = empFields[2];
+                    string empPosition = empFields[3];
+                    string empContact = empFields[4];
+                    string empEmail = empFields[5];
+
+                    Employee employee = new Employee(empName, empAge, empGender, empPosition, empContact, empEmail, department);
+                    department.Employees.Add(employee);
+                }
+                else
+                {
+                    Console.WriteLine($"작성한 부분의 값이 올바르지 않아서 에러가 났습니다.");
+                }
+            }
 
             company.PrintInfo();
             department.PrintInfo();
