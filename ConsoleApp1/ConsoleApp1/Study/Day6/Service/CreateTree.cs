@@ -70,7 +70,7 @@ namespace ConsoleApp1.Study.Day6.Service
                 }
                 else
                 {
-                    Console.WriteLine($"작성한 부분의 값이 올바르지 않아서 에러가 났습니다.");
+                    Console.WriteLine($"{empFields[0]}작성한 부분의 값이 올바르지 않아서 에러가 났습니다.");
                 }
             }
 
