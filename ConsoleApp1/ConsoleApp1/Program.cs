@@ -15,12 +15,21 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+
             CreateTree createTree = new CreateTree();
+        
+            string path = $"{AppDomain.CurrentDomain.BaseDirectory}\\Study\\Day6\\Data.txt";
 
-            string path = $"{AppDomain.CurrentDomain.BaseDirectory}Day6\\Data.txt";
+            List<string> lines = new List<string>();
 
-            // 각 줄을 배열로 읽음
-            string[] lines = File.ReadAllLines(path);
+            string[] line = File.ReadAllLines(path);
+
+            foreach (string Data in line)
+            {
+                lines.Add(Data);
+            }
+
+            createTree.BuildOrganizationTree(lines);
 
             Console.ReadKey();
         }

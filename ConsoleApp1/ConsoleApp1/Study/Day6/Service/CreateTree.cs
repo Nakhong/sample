@@ -10,22 +10,21 @@ namespace ConsoleApp1.Study.Day6.Service
 {
     public class CreateTree
     {
-        // 회사와 부서를 저장할 정적 딕셔너리
-        private static Dictionary<string, Company> companies = new Dictionary<string, Company>();
-        private static Dictionary<string, Department> departments = new Dictionary<string, Department>();
+        // 회사와 부서를 저장
+        private Dictionary<string, Company> companies = new Dictionary<string, Company>();
+        private Dictionary<string, Department> departments = new Dictionary<string, Department>();
 
         // 데이터를 파싱하여 트리를 구성하는 초기 메서드
-        public static void BuildOrganizationTree(string rowData)
+        public void BuildOrganizationTree(List<string> rowData)
         {
-            string[] rows = rowData.Split('\n');
 
-            foreach (string row in rows)
+            foreach (string row in rowData)
             {
                 string[] parts = row.Split(';');
 
                 if (parts.Length < 8)
                 {
-                    Console.WriteLine($"불완전한 데이터 : '{row}'");
+                    Console.WriteLine($"데이터 형식이 맞지 않습니다. '{row}'");
                     return;
                 }
 
@@ -40,20 +39,28 @@ namespace ConsoleApp1.Study.Day6.Service
 
                 // 회사 객체 가져오기 또는 새로 생성
                 Company currentCompany;
-                if (!companies.TryGetValue(companyName, out currentCompany))
+                if (!companies.ContainsKey(companyName))
                 {
                     currentCompany = new Company(companyName, companyAddress, companyPhone);
                     companies.Add(companyName, currentCompany);
                 }
+                else
+                {
+                    currentCompany = companies[companyName];
+                }
 
                 // 부서 객체 가져오기 또는 새로 생성
-                string departmentKey = $"{companyName}-{departmentName}";
+                string departmentKey = $"{departmentName}";
                 Department currentDepartment;
-                if (!departments.TryGetValue(departmentKey, out currentDepartment))
+                if (!departments.ContainsKey(departmentKey))
                 {
                     currentDepartment = new Department(departmentName, currentCompany);
                     currentCompany.Departments.Add(currentDepartment);
                     departments.Add(departmentKey, currentDepartment);
+                }
+                else
+                {
+                    currentDepartment = departments[departmentKey];
                 }
 
                 // 직원 객체 생성 및 부서에 추가
