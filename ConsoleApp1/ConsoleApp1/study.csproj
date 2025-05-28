@@ -69,6 +69,7 @@
     <Content Include="Study\Day4\알아올것들.txt" />
     <Content Include="Study\Day4\Sort.txt" />
     <Content Include="Study\Day5\공부.txt" />
+    <Content Include="Study\Day6\Data.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

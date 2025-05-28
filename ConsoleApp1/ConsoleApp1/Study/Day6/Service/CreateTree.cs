@@ -10,27 +10,9 @@ namespace ConsoleApp1.Study.Day6.Service
 {
     public class CreateTree
     {
-        public Dictionary<string, string> Data { get; set; }
+        Dictionary<string, Common> Datas = new Dictionary<string, Common>();
 
-        //public static void test(string row)
-        //{
-        //    string[] parts = row.Split(';');
-
-        //    Company company = new Company(parts[0], parts[1], parts[2]);
-
-        //    Department department = new Department(parts[3], company);
-        //    company.Departments.Add(department);
-
-        //    Employee employee = new Employee(parts[4], parts[5], parts[6], department, parts[7]);
-        //    department.Employees.Add(employee);
-
-        //    company.PrintInfo();
-        //    department.PrintInfo();
-        //    employee.PrintInfo();
-
-        //}
-
-        public static void test(string row)
+        public void test(string row)
         {
             string[] majorSections = row.Split('/');
             
@@ -47,16 +29,20 @@ namespace ConsoleApp1.Study.Day6.Service
 
             Department department = new Department(departmentName, company);
             company.Departments.Add(department);
-            
+
+            Datas.Add("a",company);
+            company.GetType();
+            department.GetType();
+
             string allEmployeesRaw = majorSections[2].TrimStart(',').TrimEnd(';');
-            
+
             string[] employeeRecords = allEmployeesRaw.Split(',');
 
             foreach (string empRecord in employeeRecords)
             {
                 string[] empFields = empRecord.Split(';');
-                
-                if (empFields.Length == 7)
+
+                if (empFields.Length ==7 || empFields.Length == 6)
                 {
                     string empName = empFields[0];
                     string empAge = empFields[1];
@@ -65,7 +51,7 @@ namespace ConsoleApp1.Study.Day6.Service
                     string empContact = empFields[4];
                     string empEmail = empFields[5];
 
-                    Employee employee = new Employee(empName, empAge, empGender, empPosition, empContact, empEmail, department);
+                    Employee employee = new Employee(empName, empPosition, empContact, empEmail, department);
                     department.Employees.Add(employee);
                 }
                 else
