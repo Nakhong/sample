@@ -10,61 +10,55 @@ namespace ConsoleApp1.Study.Day6.Service
 {
     public class CreateTree
     {
-        Dictionary<string, Common> Datas = new Dictionary<string, Common>();
+        // 회사와 부서를 저장할 정적 딕셔너리
+        private static Dictionary<string, Company> companies = new Dictionary<string, Company>();
+        private static Dictionary<string, Department> departments = new Dictionary<string, Department>();
 
-        public void test(string row)
+        // 데이터를 파싱하여 트리를 구성하는 초기 메서드
+        public static void BuildOrganizationTree(string rowData)
         {
-            string[] majorSections = row.Split('/');
-            
-            string[] companyDatas = majorSections[0].Split(';');
-            //필드에 들어갈 값이 3개
-            if (companyDatas.Length < 3)
+            string[] rows = rowData.Split('\n');
+
+            foreach (string row in rows)
             {
-                Console.WriteLine("회사이름;전화번호;주소;로 입력해주세요.");
-                return;
-            }
-            Company company = new Company(companyDatas[0], companyDatas[2], companyDatas[1]);
+                string[] parts = row.Split(';');
 
-            string departmentName = majorSections[1].TrimEnd(';');
-
-            Department department = new Department(departmentName, company);
-            company.Departments.Add(department);
-
-            Datas.Add("a",company);
-            company.GetType();
-            department.GetType();
-
-            string allEmployeesRaw = majorSections[2].TrimStart(',').TrimEnd(';');
-
-            string[] employeeRecords = allEmployeesRaw.Split(',');
-
-            foreach (string empRecord in employeeRecords)
-            {
-                string[] empFields = empRecord.Split(';');
-
-                if (empFields.Length ==7 || empFields.Length == 6)
+                if (parts.Length < 8)
                 {
-                    string empName = empFields[0];
-                    string empAge = empFields[1];
-                    string empGender = empFields[2];
-                    string empPosition = empFields[3];
-                    string empContact = empFields[4];
-                    string empEmail = empFields[5];
-
-                    Employee employee = new Employee(empName, empPosition, empContact, empEmail, department);
-                    department.Employees.Add(employee);
+                    Console.WriteLine($"불완전한 데이터 : '{row}'");
+                    return;
                 }
-                else
+
+                string companyName = parts[0];
+                string companyPhone = parts[1];
+                string companyAddress = parts[2];
+                string departmentName = parts[3];
+                string empName = parts[4];
+                string empPosition = parts[5];
+                string empContact = parts[6];
+                string empEmail = parts[7];
+
+                // 회사 객체 가져오기 또는 새로 생성
+                Company currentCompany;
+                if (!companies.TryGetValue(companyName, out currentCompany))
                 {
-                    Console.WriteLine($"{empFields[0]}작성한 부분의 값이 올바르지 않아서 에러가 났습니다.");
+                    currentCompany = new Company(companyName, companyAddress, companyPhone);
+                    companies.Add(companyName, currentCompany);
                 }
-            }
 
-            company.PrintInfo();
-            department.PrintInfo();
-            foreach (var emp in department.Employees)
-            {
-                emp.PrintInfo();
+                // 부서 객체 가져오기 또는 새로 생성
+                string departmentKey = $"{companyName}-{departmentName}";
+                Department currentDepartment;
+                if (!departments.TryGetValue(departmentKey, out currentDepartment))
+                {
+                    currentDepartment = new Department(departmentName, currentCompany);
+                    currentCompany.Departments.Add(currentDepartment);
+                    departments.Add(departmentKey, currentDepartment);
+                }
+
+                // 직원 객체 생성 및 부서에 추가
+                Employee employee = new Employee(empName, empPosition, empContact, empEmail, currentDepartment);
+                currentDepartment.Employees.Add(employee);
             }
         }
     }
