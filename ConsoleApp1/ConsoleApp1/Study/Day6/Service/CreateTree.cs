@@ -67,11 +67,77 @@ namespace ConsoleApp1.Study.Day6.Service
                 Employee employee = new Employee(empName, empPosition, empContact, empEmail, currentDepartment);
                 currentDepartment.Employees.Add(employee);
             }
-            printTreeDatas();
+            printOrganizationTree();
         }
-        public void printTreeDatas()
+        public void printOrganizationTree()
         {
-            Console.Write(companies);
+            printList(companies);   //회사 목록 출력
+
+            string companyName = Console.ReadLine();    //회사 입력 받기.
+
+            foreach (var data in companies)
+            {
+                if (validationKey(companies,companyName))
+                {
+                    //Name과 같은 key가 있으면 그 data를 가지고 for문을 돌린다.
+                    printList(data.Value.Departments);
+                }
+                else
+                {
+                    Console.WriteLine("다시 입력해주세요");
+                    printOrganizationTree();
+                }
+            }
+        }
+
+        public void printList<T>(Dictionary<string, T> dictionaries) where T : Common
+        {
+            if (typeof(T).Name == "Company")
+            {
+                Console.WriteLine("회사 목록입니다.");
+                // 객체 Key 출력
+                foreach (var key in dictionaries.Keys)
+                {
+                    Console.WriteLine(key);
+                }
+            }
+            else if(typeof(T).Name == "Department")
+            {
+                Console.WriteLine("부서 목록입니다.");
+                // 객체 Key 출력
+                foreach (var key in dictionaries.Keys)
+                {
+                    Console.WriteLine(key);
+                }
+            }
+            else if (typeof(T).Name == "Employee")
+            {
+                Console.WriteLine("직원 목록입니다.");
+            }
+        }
+
+        public void printList<T>(List<T> list)
+        {
+            if (typeof(T).Name == "Department")
+            {
+                Console.WriteLine("부서 목록입니다.");
+            }
+            else if (typeof(T).Name == "Employee")
+            {
+                Console.WriteLine("직원 목록입니다.");
+            }
+        }
+
+        public bool validationKey<T>(Dictionary<string,T> dictionaries,string name) where T : Common
+        {
+            foreach (var key in dictionaries.Keys)
+            {
+                if (key == name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
