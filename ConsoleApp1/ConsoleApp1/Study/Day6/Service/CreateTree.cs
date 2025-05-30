@@ -67,6 +67,11 @@ namespace ConsoleApp1.Study.Day6.Service
                 Employee employee = new Employee(empName, empPosition, empContact, empEmail, currentDepartment);
                 currentDepartment.Employees.Add(employee);
             }
+            printTreeDatas();
+        }
+        public void printTreeDatas()
+        {
+            Console.Write(companies);
         }
     }
 }
