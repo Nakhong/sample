@@ -67,13 +67,17 @@ namespace ConsoleApp1.Study.Day6.Service
                 Employee employee = new Employee(empName, empPosition, empContact, empEmail, currentDepartment);
                 currentDepartment.Employees.Add(employee);
             }
+            //트리 입출력
             printOrganizationTree();
         }
+
         public void printOrganizationTree()
         {
             printList(companies);   //회사 목록 출력
 
             string companyName = Console.ReadLine();    //회사 입력 받기.
+            string departmentName;
+            string employeePosition;
 
             foreach (var data in companies)
             {
@@ -81,54 +85,71 @@ namespace ConsoleApp1.Study.Day6.Service
                 {
                     //Name과 같은 key가 있으면 그 data를 가지고 for문을 돌린다.
                     printList(data.Value.Departments);
+                    departmentName = Console.ReadLine();
+                    
+                    if (validationKey(departments,departmentName))
+                    {
+                        employeePosition = Console.ReadLine(); // 포지션 입력
+                        printEmployees();
+                    }
                 }
                 else
                 {
+
                     Console.WriteLine("다시 입력해주세요");
                     printOrganizationTree();
                 }
             }
         }
 
-        public void printList<T>(Dictionary<string, T> dictionaries) where T : Common
+        // 회사
+        private void printList<T>(Dictionary<string, T> dictionaries) where T : Company
         {
             if (typeof(T).Name == "Company")
             {
-                Console.WriteLine("회사 목록입니다.");
-                // 객체 Key 출력
-                foreach (var key in dictionaries.Keys)
-                {
-                    Console.WriteLine(key);
-                }
+                Console.WriteLine("--- 회사 목록입니다. ---");
             }
-            else if(typeof(T).Name == "Department")
+
+            if (dictionaries.Any()) // 딕셔너리에 요소가 있는지 확인
             {
-                Console.WriteLine("부서 목록입니다.");
-                // 객체 Key 출력
-                foreach (var key in dictionaries.Keys)
+                foreach (var datas in dictionaries.Values)
                 {
-                    Console.WriteLine(key);
+                    Console.WriteLine($"{datas.Name} {datas.Address} {datas.CompanyPhoneNumber}");
                 }
+                Console.Write("회사명을 입력해주세요 :");
             }
-            else if (typeof(T).Name == "Employee")
+            else
             {
-                Console.WriteLine("직원 목록입니다.");
+                Console.WriteLine("목록이 비어 있습니다.");
             }
         }
 
-        public void printList<T>(List<T> list)
+        // 리스트의 Name 속성을 출력
+        private void printList<T>(List<T> list) where T : Common
         {
             if (typeof(T).Name == "Department")
             {
-                Console.WriteLine("부서 목록입니다.");
+                Console.WriteLine("--- 부서 목록입니다. ---");
             }
             else if (typeof(T).Name == "Employee")
             {
-                Console.WriteLine("직원 목록입니다.");
+                Console.WriteLine("--- 직원 목록입니다. ---");
+            }
+
+            if (list.Any())
+            {
+                foreach (var item in list)
+                {
+                    Console.WriteLine(item.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine("목록이 비어 있습니다.");
             }
         }
 
-        public bool validationKey<T>(Dictionary<string,T> dictionaries,string name) where T : Common
+        private bool validationKey<T>(Dictionary<string,T> dictionaries,string name) where T : Common
         {
             foreach (var key in dictionaries.Keys)
             {
@@ -138,6 +159,11 @@ namespace ConsoleApp1.Study.Day6.Service
                 }
             }
             return false;
+        }
+
+        private void printEmployees()
+        {
+
         }
     }
 }
