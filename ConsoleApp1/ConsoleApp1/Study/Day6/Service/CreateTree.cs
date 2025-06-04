@@ -14,6 +14,13 @@ namespace ConsoleApp1.Study.Day6.Service
         private Dictionary<string, Company> companies = new Dictionary<string, Company>();
         private Dictionary<string, Department> departments = new Dictionary<string, Department>();
 
+        public enum EmployeeAction
+        {
+            GoBackToDepartment, // 부서 선택으로 돌아가기
+            GoBackToCompany,   // 회사 선택으로 돌아가기 (선택 사항)
+            ExitProgram         // 프로그램 종료 (선택 사항)
+        }
+
         // 데이터를 파싱하여 트리를 구성하는 초기 메서드
         public void BuildOrganizationTree(List<string> rowData)
         {
@@ -68,55 +75,53 @@ namespace ConsoleApp1.Study.Day6.Service
                 currentDepartment.Employees.Add(employee);
             }
             //트리 입출력
-            printOrganizationTree();
+            PrintOrganizationTree();
         }
 
-        public void printOrganizationTree()
+
+        // 조직도 출력의 전체 흐름을 제어하는 메인 메서드
+        public void PrintOrganizationTree()
         {
-            printList(companies);   //회사 목록 출력
-
-            string companyName = Console.ReadLine();    //회사 입력 받기.
-            string departmentName;
-            string employeePosition;
-
-            foreach (var data in companies)
+            while (true) // 전체 프로그램 루프
             {
-                if (validationKey(companies,companyName))
+                Company company = SelectCompany();
+                if (company == null) // -1 입력으로 프로그램 종료 요청
                 {
-                    //Name과 같은 key가 있으면 그 data를 가지고 for문을 돌린다.
-                    printList(data.Value.Departments);
-                    departmentName = Console.ReadLine();
-                    
-                    if (validationKey(departments,departmentName))
-                    {
-                        employeePosition = Console.ReadLine(); // 포지션 입력
-                        printEmployees();
-                    }
+                    Console.WriteLine("프로그램을 종료합니다.");
+                    break;
                 }
-                else
-                {
 
-                    Console.WriteLine("다시 입력해주세요");
-                    printOrganizationTree();
+                Department department = SelectDepartment(company);
+                if (department == null) // -1 입력으로 회사 선택으로 돌아가기 요청
+                {
+                    continue; // 다음 반복에서 다시 회사 선택으로 이동
                 }
+
+                DisplayEmployees(department);
             }
         }
 
-        // 회사
-        private void printList<T>(Dictionary<string, T> dictionaries) where T : Company
+        private void printList<T>(Dictionary<string, T> dictionaries) where T : Common
         {
             if (typeof(T).Name == "Company")
             {
-                Console.WriteLine("--- 회사 목록입니다. ---");
+                Console.WriteLine("--- 회사 목록입니다. (-1 입력 시 종료) ---");
+            }
+            else if (typeof(T).Name == "Department")
+            {
+                Console.WriteLine("--- 부서 목록입니다. (-1 입력 시 회사 선택으로 돌아가기) ---");
+            }
+            else if (typeof(T).Name == "Employee")
+            {
+                Console.WriteLine("--- 직원 목록입니다. (-1 입력 시 부서 선택으로 돌아가기) ---");
             }
 
-            if (dictionaries.Any()) // 딕셔너리에 요소가 있는지 확인
+            if (dictionaries.Any())
             {
-                foreach (var datas in dictionaries.Values)
+                foreach (var key in dictionaries.Keys)
                 {
-                    Console.WriteLine($"{datas.Name} {datas.Address} {datas.CompanyPhoneNumber}");
+                    Console.WriteLine(key);
                 }
-                Console.Write("회사명을 입력해주세요 :");
             }
             else
             {
@@ -124,7 +129,6 @@ namespace ConsoleApp1.Study.Day6.Service
             }
         }
 
-        // 리스트의 Name 속성을 출력
         private void printList<T>(List<T> list) where T : Common
         {
             if (typeof(T).Name == "Department")
@@ -140,7 +144,7 @@ namespace ConsoleApp1.Study.Day6.Service
             {
                 foreach (var item in list)
                 {
-                    Console.WriteLine(item.Name);
+                    Console.WriteLine(item.Name); // Common 클래스의 Name 속성 사용
                 }
             }
             else
@@ -149,21 +153,118 @@ namespace ConsoleApp1.Study.Day6.Service
             }
         }
 
-        private bool validationKey<T>(Dictionary<string,T> dictionaries,string name) where T : Common
+        // 회사 선택 로직을 담당하는 메서드
+        private Company SelectCompany()
         {
-            foreach (var key in dictionaries.Keys)
+            string companyName;
+            Company selectedCompany = null;
+
+            while (selectedCompany == null)
             {
-                if (key == name)
+                printList(companies);
+                Console.Write("회사 이름을 입력하세요 (-1 입력 시 프로그램 종료): ");
+                companyName = Console.ReadLine();
+
+                if (companyName == "-1")
                 {
-                    return true;
+                    return null; // 프로그램 종료를 의미
+                }
+
+                if (ValidateKey(companies, companyName))
+                {
+                    selectedCompany = companies[companyName];
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 회사 이름입니다. 다시 입력해주세요.");
                 }
             }
-            return false;
+            return selectedCompany;
         }
 
-        private void printEmployees()
+        // 부서 선택 로직을 담당하는 메서드
+        private Department SelectDepartment(Company company)
         {
+            string departmentName;
+            Department selectedDepartment = null;
 
+            while (selectedDepartment == null)
+            {
+                printList(company.Departments);
+                Console.Write($"'{company.Name}'의 부서 이름을 입력하세요 (-1 입력 시 회사 선택으로 돌아가기): ");
+                departmentName = Console.ReadLine();
+
+                if (departmentName == "-1")
+                {
+                    return null; // 회사 선택으로 돌아가기를 의미
+                }
+
+                selectedDepartment = company.Departments.FirstOrDefault(d => d.Name == departmentName);
+
+                if (selectedDepartment == null) // FirstOrDefault는 없으면 null을 반환합니다.
+                {
+                    Console.WriteLine("잘못된 부서 이름입니다. 다시 입력해주세요.");
+                }
+
+            }
+            return selectedDepartment;
+        }
+
+        // 직원을 포지션별로 출력하거나 전체를 출력하는 로직을 담당하는 메서드
+        private void DisplayEmployees(Department department)
+        {
+            string input;
+            while (true)
+            {
+                Console.WriteLine($"--- {department.Name} 부서 직원 목록입니다. ---");
+                Console.Write("전체 / 직급 / -1 입력 시 부서 선택으로 돌아가기 :");
+                input = Console.ReadLine();
+
+                if (input == "-1")
+                {
+                    return;
+                }
+                else if (input == "전체")
+                {
+                    // List 자체를 순회합니다.
+                    if (department.Employees.Any()) // List에도 Any() 사용 가능
+                    {
+                        foreach (var emp in department.Employees)
+                        {
+                            Console.WriteLine($"이름: {emp.Name}, 포지션: {emp.EmployeePosition}, 연락처: {emp.Contact}, 이메일: {emp.Email}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("직원 목록이 비어 있습니다.");
+                    }
+                }
+                else // 특정 포지션으로 조회
+                {
+                    var filteredEmployees = department.Employees
+                                                    .Where(e => e.EmployeePosition?.ToLower() == input.ToLower())
+                                                    .ToList();
+                    if (filteredEmployees.Any())
+                    {
+                        Console.WriteLine($"--- '{input}' 포지션 직원 목록입니다. ---");
+                        foreach (var emp in filteredEmployees)
+                        {
+                            Console.WriteLine($"이름: {emp.Name}, 포지션: {emp.EmployeePosition}, 연락처: {emp.Contact}, 이메일: {emp.Email}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"'{input}' 포지션의 직원이 없습니다.");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+
+
+        private bool ValidateKey<T>(Dictionary<string, T> dictionary, string key) where T : Common
+        {
+            return dictionary.ContainsKey(key);
         }
     }
 }
