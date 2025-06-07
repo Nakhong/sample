@@ -16,9 +16,9 @@ namespace ConsoleApp1.Study.Day6.Service
 
         public enum EmployeeAction
         {
-            GoBackToDepartment, // 부서 선택으로 돌아가기
-            GoBackToCompany,   // 회사 선택으로 돌아가기 (선택 사항)
-            ExitProgram         // 프로그램 종료 (선택 사항)
+            GoBackToDepartment, 
+            GoBackToCompany,   
+            ExitProgram         
         }
 
         // 데이터를 파싱하여 트리를 구성하는 초기 메서드
@@ -91,13 +91,26 @@ namespace ConsoleApp1.Study.Day6.Service
                     break;
                 }
 
-                Department department = SelectDepartment(company);
-                if (department == null) // -1 입력으로 회사 선택으로 돌아가기 요청
+                // 부서 선택 루프
+                while (true)
                 {
-                    continue; // 다음 반복에서 다시 회사 선택으로 이동
-                }
+                    Department department = SelectDepartment(company);
+                    if (department == null) // -1 입력으로 회사 선택으로 돌아가기 요청
+                    {
+                        break; // 부서 선택 루프를 빠져나가 회사 선택 루프의 다음 반복으로 (SelectCompany() 호출)
+                    }
 
-                DisplayEmployees(department);
+                    // 직원 조회 및 액션 처리
+                    EmployeeAction action = DisplayEmployees(department);
+                    if (action == EmployeeAction.GoBackToDepartment)
+                    {
+                        continue; // 부서 선택 루프의 다음 반복으로 (SelectDepartment() 호출)
+                    }
+                    else if (action == EmployeeAction.GoBackToCompany)
+                    {
+                        break; // 부서 선택 루프를 빠져나가 회사 선택 루프의 다음 반복으로 (SelectCompany() 호출)
+                    }
+                }
             }
         }
 
@@ -211,18 +224,21 @@ namespace ConsoleApp1.Study.Day6.Service
         }
 
         // 직원을 포지션별로 출력하거나 전체를 출력하는 로직을 담당하는 메서드
-        private void DisplayEmployees(Department department)
+        private EmployeeAction DisplayEmployees(Department department)
         {
             string input;
             while (true)
             {
                 Console.WriteLine($"--- {department.Name} 부서 직원 목록입니다. ---");
-                Console.Write("전체 / 직급 / -1 입력 시 부서 선택으로 돌아가기 :");
+                Console.Write("전체 / 직급 / -1 입력 시 부서 선택으로 돌아가기 / -2 입력 시 회사 선택으로 돌아가기 :");
                 input = Console.ReadLine();
 
                 if (input == "-1")
                 {
-                    return;
+                    return EmployeeAction.GoBackToDepartment;
+                }else if (input == "-2")
+                {
+                    return EmployeeAction.GoBackToCompany;
                 }
                 else if (input == "전체")
                 {
@@ -231,7 +247,7 @@ namespace ConsoleApp1.Study.Day6.Service
                     {
                         foreach (var emp in department.Employees)
                         {
-                            Console.WriteLine($"이름: {emp.Name}, 포지션: {emp.EmployeePosition}, 연락처: {emp.Contact}, 이메일: {emp.Email}");
+                            Console.WriteLine($"이름: {emp.Name}, 직급: {emp.EmployeePosition}, 연락처: {emp.Contact}, 이메일: {emp.Email}");
                         }
                     }
                     else
@@ -246,15 +262,15 @@ namespace ConsoleApp1.Study.Day6.Service
                                                     .ToList();
                     if (filteredEmployees.Any())
                     {
-                        Console.WriteLine($"--- '{input}' 포지션 직원 목록입니다. ---");
+                        Console.WriteLine($"--- '{input}' 직원 목록입니다. ---");
                         foreach (var emp in filteredEmployees)
                         {
-                            Console.WriteLine($"이름: {emp.Name}, 포지션: {emp.EmployeePosition}, 연락처: {emp.Contact}, 이메일: {emp.Email}");
+                            Console.WriteLine($"이름: {emp.Name}, 직급: {emp.EmployeePosition}, 연락처: {emp.Contact}, 이메일: {emp.Email}");
                         }
                     }
                     else
                     {
-                        Console.WriteLine($"'{input}' 포지션의 직원이 없습니다.");
+                        Console.WriteLine($"'{input}' 직급의 직원이 없습니다.");
                     }
                 }
                 Console.WriteLine();
