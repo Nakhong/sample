@@ -82,10 +82,10 @@ namespace ConsoleApp1.Study.Day6.Service
         // 조직도 출력의 전체 흐름을 제어하는 메인 메서드
         public void PrintOrganizationTree()
         {
-            while (true) // 전체 프로그램 루프
+            while (true) // 전체 루프
             {
                 Company company = SelectCompany();
-                if (company == null) // -1 입력으로 프로그램 종료 요청
+                if (company == null) // -1 입력으로 프로그램 종료
                 {
                     Console.WriteLine("프로그램을 종료합니다.");
                     break;
@@ -95,20 +95,20 @@ namespace ConsoleApp1.Study.Day6.Service
                 while (true)
                 {
                     Department department = SelectDepartment(company);
-                    if (department == null) // -1 입력으로 회사 선택으로 돌아가기 요청
+                    if (department == null) // -1 입력으로 회사 선택으로 돌아가기
                     {
-                        break; // 부서 선택 루프를 빠져나가 회사 선택 루프의 다음 반복으로 (SelectCompany() 호출)
+                        break; // 부서 선택 루프를 빠져나가 회사 선택 루프의 다음 반복으로 SelectCompany 호출
                     }
 
                     // 직원 조회 및 액션 처리
                     EmployeeAction action = DisplayEmployees(department);
                     if (action == EmployeeAction.GoBackToDepartment)
                     {
-                        continue; // 부서 선택 루프의 다음 반복으로 (SelectDepartment() 호출)
+                        continue; // 부서 선택 루프의 다음 반복으로 SelectDepartment호출
                     }
                     else if (action == EmployeeAction.GoBackToCompany)
                     {
-                        break; // 부서 선택 루프를 빠져나가 회사 선택 루프의 다음 반복으로 (SelectCompany() 호출)
+                        break; // 부서 선택 루프를 빠져나가 회사 선택 루프의 다음 반복으로 SelectCompany 호출
                     }
                 }
             }
@@ -129,7 +129,7 @@ namespace ConsoleApp1.Study.Day6.Service
                 Console.WriteLine("--- 직원 목록입니다. (-1 입력 시 부서 선택으로 돌아가기) ---");
             }
 
-            if (dictionaries.Any())
+            if (dictionaries.Count() > 0)
             {
                 foreach (var key in dictionaries.Keys)
                 {
@@ -153,11 +153,11 @@ namespace ConsoleApp1.Study.Day6.Service
                 Console.WriteLine("--- 직원 목록입니다. ---");
             }
 
-            if (list.Any())
+            if (list.Count() > 0)
             {
                 foreach (var item in list)
                 {
-                    Console.WriteLine(item.Name); // Common 클래스의 Name 속성 사용
+                    Console.WriteLine(item.Name); // Common 클래스의 Name 사용
                 }
             }
             else
@@ -180,7 +180,7 @@ namespace ConsoleApp1.Study.Day6.Service
 
                 if (companyName == "-1")
                 {
-                    return null; // 프로그램 종료를 의미
+                    return null; // 프로그램 종료
                 }
 
                 if (ValidateKey(companies, companyName))
@@ -209,12 +209,12 @@ namespace ConsoleApp1.Study.Day6.Service
 
                 if (departmentName == "-1")
                 {
-                    return null; // 회사 선택으로 돌아가기를 의미
+                    return null; // 회사 선택으로 돌아가기
                 }
-
+                
                 selectedDepartment = company.Departments.FirstOrDefault(d => d.Name == departmentName);
 
-                if (selectedDepartment == null) // FirstOrDefault는 없으면 null을 반환합니다.
+                if (selectedDepartment == null)
                 {
                     Console.WriteLine("잘못된 부서 이름입니다. 다시 입력해주세요.");
                 }
@@ -242,8 +242,7 @@ namespace ConsoleApp1.Study.Day6.Service
                 }
                 else if (input == "전체")
                 {
-                    // List 자체를 순회합니다.
-                    if (department.Employees.Any()) // List에도 Any() 사용 가능
+                    if (department.Employees.Count() > 0)
                     {
                         foreach (var emp in department.Employees)
                         {
@@ -255,12 +254,13 @@ namespace ConsoleApp1.Study.Day6.Service
                         Console.WriteLine("직원 목록이 비어 있습니다.");
                     }
                 }
-                else // 특정 포지션으로 조회
+                else // 특정 직급으로 조회
                 {
                     var filteredEmployees = department.Employees
-                                                    .Where(e => e.EmployeePosition?.ToLower() == input.ToLower())
+                                                    .Where(e => e.EmployeePosition.ToLower() == input.ToLower())
                                                     .ToList();
-                    if (filteredEmployees.Any())
+
+                    if (filteredEmployees.Count() > 0)
                     {
                         Console.WriteLine($"--- '{input}' 직원 목록입니다. ---");
                         foreach (var emp in filteredEmployees)
