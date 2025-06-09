@@ -95,16 +95,16 @@ namespace ConsoleApp1.Study.Day6.Service
                 while (true)
                 {
                     Department department = SelectDepartment(company);
-                    if (department == null) // -1 입력으로 회사 선택으로 돌아가기
+                    if (department == null) // -1 입력시 회사 선택으로
                     {
                         break; // 부서 선택 루프를 빠져나가 회사 선택 루프의 다음 반복으로 SelectCompany 호출
                     }
 
-                    // 직원 조회 및 액션 처리
+                    // 직원 조회 및 ENUM 처리
                     EmployeeAction action = DisplayEmployees(department);
                     if (action == EmployeeAction.GoBackToDepartment)
                     {
-                        continue; // 부서 선택 루프의 다음 반복으로 SelectDepartment호출
+                        continue; // 부서 선택 루프의 다음 반복으로 SelectDepartment 호출
                     }
                     else if (action == EmployeeAction.GoBackToCompany)
                     {
@@ -223,7 +223,7 @@ namespace ConsoleApp1.Study.Day6.Service
             return selectedDepartment;
         }
 
-        // 직원을 포지션별로 출력하거나 전체를 출력하는 로직을 담당하는 메서드
+        // 직원을 직급 별로 출력하거나 전체를 출력하는 로직을 담당하는 메서드
         private EmployeeAction DisplayEmployees(Department department)
         {
             string input;
@@ -257,12 +257,11 @@ namespace ConsoleApp1.Study.Day6.Service
                 else // 특정 직급으로 조회
                 {
                     var filteredEmployees = department.Employees
-                                                    .Where(e => e.EmployeePosition.ToLower() == input.ToLower())
-                                                    .ToList();
+                                                    .Where(e => e.EmployeePosition.ToLower() == input.ToLower());
 
                     if (filteredEmployees.Count() > 0)
                     {
-                        Console.WriteLine($"--- '{input}' 직원 목록입니다. ---");
+                        Console.WriteLine($"--- {input} 직원 목록입니다. ---");
                         foreach (var emp in filteredEmployees)
                         {
                             Console.WriteLine($"이름: {emp.Name}, 직급: {emp.EmployeePosition}, 연락처: {emp.Contact}, 이메일: {emp.Email}");
@@ -270,7 +269,7 @@ namespace ConsoleApp1.Study.Day6.Service
                     }
                     else
                     {
-                        Console.WriteLine($"'{input}' 직급의 직원이 없습니다.");
+                        Console.WriteLine($"{input} 직급의 직원이 없습니다.");
                     }
                 }
                 Console.WriteLine();

@@ -72,7 +72,7 @@
     <Content Include="Study\Day6\Data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Study\Day6\TextFile1.txt" />
+    <Content Include="Study\Day6\공부한것.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
